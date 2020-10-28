@@ -1,0 +1,42 @@
+{
+  "name": "loopdev",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Loopdevice library for Node.js",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "c8 --reporter lcov --reporter html --reporter text --all mocha",
+    "eslint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k13-engineering/node-loopdev.git"
+  },
+  "keywords": [
+    "node",
+    "loopdev",
+    "losetup",
+    "loop",
+    "block",
+    "device"
+  ],
+  "author": "Simon Kadisch",
+  "license": "LGPL 2.1",
+  "bugs": {
+    "url": "https://github.com/k13-engineering/node-loopdev/issues"
+  },
+  "homepage": "https://github.com/k13-engineering/node-loopdev#readme",
+  "dependencies": {
+    "ioctl": "^2.0.2",
+    "struct": "0.0.12"
+  },
+  "devDependencies": {
+    "c8": "^7.3.0",
+    "eslint": "^7.9.0",
+    "mocha": "^8.1.3",
+    "tmp-promise": "^3.0.2",
+    "@babel/core": "^7.12.3",
+    "@babel/eslint-parser": "^7.12.1",
+    "node-archibald": "0.0.1"
+  }
+}

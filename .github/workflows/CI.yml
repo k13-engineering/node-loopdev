@@ -1,0 +1,43 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    name: tests
+
+    strategy:
+      matrix:
+        arch: [ amd64 ]
+        node: [ 12, 14 ]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+      - uses: docker/setup-qemu-action@v1
+      - uses: satackey/action-docker-layer-caching@v0.0.8
+        continue-on-error: true
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: node_modules/.bin/archibald -p -e NODE_LOOPDEV_TEST_SKIP_BLOCK_SIZE=1 -e NODE_LOOPDEV_TEST_SKIP_DIRECT_IO=1 -a ${{ matrix.arch }} -n ${{ matrix.node }} .
+      - name: Verify code with ESLint
+        run: npm run eslint
+
+  linter:
+    runs-on: ubuntu-latest
+    name: linter
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Verify code with ESLint
+        run: npm run eslint

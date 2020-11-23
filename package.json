@@ -28,6 +28,7 @@
   "homepage": "https://github.com/k13-engineering/node-loopdev#readme",
   "dependencies": {
     "ioctl": "^2.0.2",
+    "linux-blockdev": "0.0.1",
     "struct": "0.0.12"
   },
   "devDependencies": {

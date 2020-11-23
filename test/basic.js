@@ -66,7 +66,14 @@ const waitUntil = async (fn, { timeout = 30000 } = {}) => {
 };
 
 const basicLoopDeviceCheck = ({ dev }) => {
-  assert(typeof dev.devicePath === "string");
+  assert.equal(typeof dev.deviceName, "string");
+  assert(dev.deviceName.startsWith("loop"));
+
+  assert.equal(typeof dev.deviceNode, "object");
+  assert.equal(typeof dev.deviceNode.major, "number");
+  assert.equal(typeof dev.deviceNode.minor, "number");
+
+  assert.equal(typeof dev.devicePath, "string");
   assert(dev.devicePath.startsWith("/dev/loop"));
 };
 
